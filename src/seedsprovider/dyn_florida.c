@@ -112,6 +112,10 @@ florida_get_seeds(struct context * ctx, struct mbuf *seeds_buf) {
     tmpres = inet_pton(AF_INET, floridaIp, (void *)(&(remote->sin_addr.s_addr)));
     remote->sin_port = htons(floridaPort);
 
+    log_debug(LOG_VVERB, "Running florida_get_seeds!");
+    log_debug(LOG_VVERB, floridaIp);
+    log_debug(LOG_VVERB, floridaPort);
+
     if(connect(sock, (struct sockaddr *)remote, sizeof(struct sockaddr)) < 0) {
         log_debug(LOG_VVERB, "Unable to connect the destination");
         return DN_ERROR;
